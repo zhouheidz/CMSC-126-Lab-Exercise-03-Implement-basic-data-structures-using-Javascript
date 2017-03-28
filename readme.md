@@ -31,6 +31,10 @@ Methods:
 - `contains(value)`
   - checks whether a value can be found in the linked list
   - returns boolean
+- `items()`
+  - retrieves all items in the linked list
+  - returns an array of linked list items in the right order, with the last
+    item added at the end of the array
 
 ### `Stack`
 
@@ -51,6 +55,10 @@ Methods:
 - `peek()`
   - retrieves the top of the stack
   - returns the top value, or null
+- `items()`
+  - retrieves all items in the stack
+  - returns an array of stack items in the right order, with the top of the
+    stack at the end of the array
 
 ### `Queue`
 
@@ -71,6 +79,10 @@ Methods:
 - `peek()`
   - retrieves the front of the queue
   - returns the front value, or null
+- `items()`
+  - retrieves all items in the queue
+  - returns an array of queue items in the right order, with the front of the
+    queue at the start of the array
 
 
 ## File Structure
