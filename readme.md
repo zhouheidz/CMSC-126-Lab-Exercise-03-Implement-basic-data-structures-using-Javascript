@@ -113,4 +113,6 @@ tests passed or failed.
 
 - You may implement additional functions and classes as you need, but just
   place them inside the same file where they are needed.
+- I will be using the latest Chrome stable version when checking your
+  submissions, so you may use any new Javascript features that you want.
 - Have fun! :)
