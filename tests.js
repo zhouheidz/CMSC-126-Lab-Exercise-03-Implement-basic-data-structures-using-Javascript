@@ -242,3 +242,127 @@ describe('Stack', function() {
         });
     });
 });
+
+
+describe('Queue', function() {
+    describe('enqueue(value)', function() {
+        beforeEach(function() {
+            this.queue = new Queue();
+        });
+
+        it('should add the value to the end of the queue', function() {
+            this.queue.enqueue(1);
+            assert.deepEqual(this.queue.items(), [1]);
+
+            this.queue.enqueue(2);
+            assert.deepEqual(this.queue.items(), [1, 2]);
+
+            this.queue.enqueue(3);
+            assert.deepEqual(this.queue.items(), [1, 2, 3]);
+        });
+
+        it('should increment the length of the queue', function() {
+            this.queue.enqueue(1);
+            assert.equal(this.queue.length, 1);
+
+            this.queue.enqueue(2);
+            assert.equal(this.queue.length, 2);
+
+            this.queue.enqueue(3);
+            assert.equal(this.queue.length, 3);
+        });
+    });
+
+    describe('dequeue()', function() {
+        beforeEach(function() {
+            this.queue = new Queue();
+            for (var i = 1; i <= 3; i++) {
+                this.queue.dequeue(i);
+            }
+        });
+
+        it('should remove the value at the front of the queue', function() {
+            this.queue.dequeue();
+            assert.deepEqual(this.queue.items(), [2, 3]);
+
+            this.queue.dequeue();
+            assert.deepEqual(this.queue.items(), [3]);
+
+            this.queue.dequeue();
+            assert.deepEqual(this.queue.items(), []);
+
+            this.queue.dequeue();
+            assert.deepEqual(this.queue.items(), []);
+        });
+
+        it('should return the removed value, or null if none', function() {
+            assert.equal(this.queue.dequeue(), 1);
+            assert.equal(this.queue.dequeue(), 2);
+            assert.equal(this.queue.dequeue(), 3);
+            assert.equal(this.queue.dequeue(), null);
+        });
+
+        it('should decrement the length of the queue', function() {
+            this.queue.dequeue();
+            assert.equal(this.queue.length, 2);
+
+            this.queue.dequeue();
+            assert.equal(this.queue.length, 1);
+
+            this.queue.dequeue();
+            assert.equal(this.queue.length, 0);
+        });
+    });
+
+    describe('peek()', function() {
+        beforeEach(function() {
+            this.queue = new Queue();
+            for (var i = 1; i <= 3; i++) {
+                this.queue.enqueue(i);
+            }
+        });
+
+        it('should return the value at the front of the queue', function() {
+            assert.equal(this.queue.peek(), 1);
+            assert.equal(this.queue.peek(), 1);
+            assert.equal(this.queue.peek(), 1);
+        });
+
+        it('should not remove any value from the queue', function() {
+            this.queue.peek();
+            assert.deepEqual(this.queue.items(), [1, 2, 3]);
+
+            this.queue.peek();
+            assert.deepEqual(this.queue.items(), [1, 2, 3]);
+
+            this.queue.peek();
+            assert.deepEqual(this.queue.items(), [1, 2, 3]);
+        });
+
+        it('should not modify the length of the stack', function() {
+            this.queue.peek();
+            assert.equal(this.queue.length, 3);
+
+            this.queue.peek();
+            assert.equal(this.queue.length, 3);
+
+            this.queue.peek();
+            assert.equal(this.queue.length, 3);
+        });
+    });
+
+    describe('items()', function() {
+        beforeEach(function() {
+            this.queue = new Queue();
+            for (var i = 1; i <= 5; i++) {
+                this.queue.enqueue(i);
+            }
+        });
+
+        it('should return an array of values in the queue', function() {
+            var items = this.queue.items();
+            assert(items instanceof Array);
+            assert.deepEqual(items, [1, 2, 3, 4, 5]);
+        });
+    });
+});
