@@ -152,17 +152,17 @@ describe('Stack', function() {
     describe('pop()', function() {
         beforeEach(function() {
             this.stack = new Stack();
-            for (var i = 1; i <= 3; i++) {
+            for (var i = 0; i < 3; i++) {
                 this.stack.push(i);
             }
         });
 
         it('should remove the value at the top of the stack', function() {
             this.stack.pop();
-            assert.deepEqual(this.stack.items(), [1, 2]);
+            assert.deepEqual(this.stack.items(), [0, 1]);
 
             this.stack.pop();
-            assert.deepEqual(this.stack.items(), [1]);
+            assert.deepEqual(this.stack.items(), [0]);
 
             this.stack.pop();
             assert.deepEqual(this.stack.items(), []);
@@ -172,9 +172,9 @@ describe('Stack', function() {
         });
 
         it('should return the removed value, or null if none', function() {
-            assert.equal(this.stack.pop(), 3);
             assert.equal(this.stack.pop(), 2);
             assert.equal(this.stack.pop(), 1);
+            assert.equal(this.stack.pop(), 0);
             assert.equal(this.stack.pop(), null);
         });
 
@@ -193,26 +193,26 @@ describe('Stack', function() {
     describe('peek()', function() {
         beforeEach(function() {
             this.stack = new Stack();
-            for (var i = 1; i <= 3; i++) {
+            for (var i = 0; i < 3; i++) {
                 this.stack.push(i);
             }
         });
 
         it('should return the value at the top of the stack', function() {
-            assert.equal(this.stack.peek(), 3);
-            assert.equal(this.stack.peek(), 3);
-            assert.equal(this.stack.peek(), 3);
+            assert.equal(this.stack.peek(), 2);
+            assert.equal(this.stack.peek(), 2);
+            assert.equal(this.stack.peek(), 2);
         });
 
         it('should not remove any value from the stack', function() {
             this.stack.peek();
-            assert.deepEqual(this.stack.items(), [1, 2, 3]);
+            assert.deepEqual(this.stack.items(), [0, 1, 2]);
 
             this.stack.peek();
-            assert.deepEqual(this.stack.items(), [1, 2, 3]);
+            assert.deepEqual(this.stack.items(), [0, 1, 2]);
 
             this.stack.peek();
-            assert.deepEqual(this.stack.items(), [1, 2, 3]);
+            assert.deepEqual(this.stack.items(), [0, 1, 2]);
         });
 
         it('should not modify the length of the stack', function() {
@@ -276,17 +276,17 @@ describe('Queue', function() {
     describe('dequeue()', function() {
         beforeEach(function() {
             this.queue = new Queue();
-            for (var i = 1; i <= 3; i++) {
-                this.queue.dequeue(i);
+            for (var i = 0; i < 3; i++) {
+                this.queue.enqueue(i);
             }
         });
 
         it('should remove the value at the front of the queue', function() {
             this.queue.dequeue();
-            assert.deepEqual(this.queue.items(), [2, 3]);
+            assert.deepEqual(this.queue.items(), [1, 2]);
 
             this.queue.dequeue();
-            assert.deepEqual(this.queue.items(), [3]);
+            assert.deepEqual(this.queue.items(), [2]);
 
             this.queue.dequeue();
             assert.deepEqual(this.queue.items(), []);
@@ -296,9 +296,9 @@ describe('Queue', function() {
         });
 
         it('should return the removed value, or null if none', function() {
+            assert.equal(this.queue.dequeue(), 0);
             assert.equal(this.queue.dequeue(), 1);
             assert.equal(this.queue.dequeue(), 2);
-            assert.equal(this.queue.dequeue(), 3);
             assert.equal(this.queue.dequeue(), null);
         });
 
@@ -317,26 +317,26 @@ describe('Queue', function() {
     describe('peek()', function() {
         beforeEach(function() {
             this.queue = new Queue();
-            for (var i = 1; i <= 3; i++) {
+            for (var i = 0; i < 3; i++) {
                 this.queue.enqueue(i);
             }
         });
 
         it('should return the value at the front of the queue', function() {
-            assert.equal(this.queue.peek(), 1);
-            assert.equal(this.queue.peek(), 1);
-            assert.equal(this.queue.peek(), 1);
+            assert.equal(this.queue.peek(), 0);
+            assert.equal(this.queue.peek(), 0);
+            assert.equal(this.queue.peek(), 0);
         });
 
         it('should not remove any value from the queue', function() {
             this.queue.peek();
-            assert.deepEqual(this.queue.items(), [1, 2, 3]);
+            assert.deepEqual(this.queue.items(), [0, 1, 2]);
 
             this.queue.peek();
-            assert.deepEqual(this.queue.items(), [1, 2, 3]);
+            assert.deepEqual(this.queue.items(), [0, 1, 2]);
 
             this.queue.peek();
-            assert.deepEqual(this.queue.items(), [1, 2, 3]);
+            assert.deepEqual(this.queue.items(), [0, 1, 2]);
         });
 
         it('should not modify the length of the stack', function() {
